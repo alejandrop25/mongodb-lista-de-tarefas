@@ -1,0 +1,27 @@
+body{
+    height: 100vh;
+    background: linear-gradient(135deg, #ffffff 50%, #851B2A 50%);
+}
+.container__header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container__header > h1{
+    font-family: "Mukta", sans-serif;
+    font-weight: 800;
+    text-align: center;
+    padding-top: 5vh;
+    text-shadow: 2px 1px 4px rgba(0,0,0,0.47);
+}
+.container__header > p{
+    font-family: "Mukta", sans-serif;
+    color: gray;
+}
+.container__tarefas{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 80%;
+    height: 70vh;
+    margin: 5vh auto;
+}
