@@ -1,7 +1,7 @@
 
 async function carregarTarefas() {
     try{
-        const response = await fetch('http://localhost:3000/tarefas');
+        const response = await fetch('https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas');
         const tarefas = await response.json();
         console.log(tarefas);
         renderTarefas(tarefas);
@@ -65,7 +65,7 @@ document.getElementById('saveEdit').addEventListener('click', async () => {
     };
 
     // Verifica se o novo nome já existe, excluindo a tarefa atual
-    const response = await fetch(`http://localhost:3000/tarefas?nome=${novaTarefa.nome}`);
+    const response = await fetch(`https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas?nome=${novaTarefa.nome}`);
     const tarefasExistentes = await response.json();
     const tarefaAtual = tarefasExistentes.find(t => t._id === tarefaId);
 
@@ -75,7 +75,7 @@ document.getElementById('saveEdit').addEventListener('click', async () => {
     }
 
     // Atualiza a tarefa
-    await fetch(`http://localhost:3000/tarefas/${tarefaId}`, {
+    await fetch(`https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas/${tarefaId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ document.getElementById('cancelEdit').addEventListener('click', async () => {
 async function excluirTarefa(tarefaId) {
     const confirmacao = confirm("Tem certeza que deseja deletar esse item?");
     if(confirmacao){
-        await fetch(`http://localhost:3000/tarefas/${tarefaId}`, {
+        await fetch(`https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas/${tarefaId}`, {
             method: 'DELETE',
         });
     }
@@ -150,7 +150,7 @@ document.getElementById('form-tarefa').addEventListener('submit', async (e) => {
 
     if (tarefaId) {
         // Atualizar tarefa existente
-        await fetch(`http://localhost:3000/tarefas/${tarefaId}`, {
+        await fetch(`https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas/${tarefaId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -159,7 +159,7 @@ document.getElementById('form-tarefa').addEventListener('submit', async (e) => {
         });
     } else {
         // Criar nova tarefa
-        await fetch('http://localhost:3000/tarefas', {
+        await fetch('https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
