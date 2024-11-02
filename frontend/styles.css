@@ -11,7 +11,7 @@ body{
     font-family: "Mukta", sans-serif;
     font-weight: 800;
     text-align: center;
-    padding-top: 5vh;
+    padding-top: 10vh;
     text-shadow: 2px 1px 4px rgba(0,0,0,0.47);
 }
 .container__header > p{
@@ -19,9 +19,50 @@ body{
     color: gray;
 }
 .container__tarefas{
-    border: 1px solid black;
     border-radius: 10px;
     width: 80%;
     height: 70vh;
     margin: 5vh auto;
+}
+#form-tarefa{
+    display: flex;
+
+}
+#form-tarefa > button{
+    height: fit-content;
+    font-size: 16px;
+    font-family: "Mukta", sans-serif;
+    padding: 6px;
+}
+.container__tarefas > ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container__tarefas > ul > li{
+    margin-top: 4vh;
+    list-style-type: none;
+    font-family: "Mukta", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    border: 2px solid rgba(0, 0, 0, 0.123);
+    border-radius: 10px;
+    padding: 0 auto;
+    width: 95vw;
+    height: 5vh;
+    text-align: center;
+    background-color: rgba(250, 235, 215, 0.747);
+}
+.container__tarefas > ul > li > em{
+    font-size: 20px;
+    color: grey;
+    text-shadow: 2px 1px 4px rgba(0,0,0,0.2);
+    margin-right: 5px;
+}
+.container__tarefas > ul > li > button{
+    height: 25px;
+    width: 35px;
+    font-size: 10px;
+    padding: 5px;
 }

@@ -10,12 +10,15 @@ router.post('/', async (req, res) => {
         res.status(201).json(tarefa);
     }catch(err){
         res.status(400).json({ message: err.message });
+        const tarefa = new Tarefa(req.body);
+        await tarefa.save();
+        console.log("Valor já inseridos.");
     }
 });
 
 router.get('/', async (req, res) => {
     try{
-        const tarefas = await Tarefa.find().sort({ ordemApresentacao: 1 });
+        const tarefas = await Tarefa.find();
         res.json(tarefas);
     }catch(err){
         res.status(500).json({message: err.message});

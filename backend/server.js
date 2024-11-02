@@ -2,10 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const tarefaRoutes = require('./routes/tarefaRoutes');
+const Tarefa = require('./models/Tarefa');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT | 3000;
+const port = 3000;
 
 connectDB();
 
@@ -21,8 +22,15 @@ app.get('/', (req, res) => {
 });
 //define as rotas
 app.use('/tarefas', tarefaRoutes);
+app.put('/tarefas/:id', async (req, res) => {
+    const { id } = req.params;
+    const { nome, custo, dataLimite } = req.body;
+
+    const tarefaAtualizada = await Tarefa.findByIdAndUpdate(id, { nome, custo, dataLimite }, { new: true });
+    res.send(tarefaAtualizada);
+});
 
 //inicia o servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
 });
