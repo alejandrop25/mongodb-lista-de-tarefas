@@ -54,15 +54,23 @@ body{
     text-align: center;
     background-color: rgba(250, 235, 215, 0.747);
 }
-.container__tarefas > ul > li > em{
-    font-size: 20px;
-    color: grey;
-    text-shadow: 2px 1px 4px rgba(0,0,0,0.2);
-    margin-right: 5px;
-}
 .container__tarefas > ul > li > button{
     height: 25px;
     width: 35px;
     font-size: 10px;
     padding: 5px;
+}
+.tarefa > img {
+    margin-right: 20px;  
+}
+
+.tarefa > em {
+    margin-right: 10px;   
+    font-size: 20px;
+    color: grey;
+    text-shadow: 2px 1px 4px rgba(0,0,0,0.6);
+}
+
+.tarefa > button {
+    margin-left: 20px;
 }

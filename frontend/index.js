@@ -1,8 +1,9 @@
+
 async function carregarTarefas() {
     try{
         const response = await fetch('http://localhost:3000/tarefas');
         const tarefas = await response.json();
-        console.log(tarefas); // Verifique se isso está retornando um array
+        console.log(tarefas);
         renderTarefas(tarefas);
     }catch(err){
         console.error(err);
@@ -21,12 +22,14 @@ function renderTarefas(tarefas) {
             li.style.backgroundColor = 'yellow'; 
         }
         li.innerHTML = `
-            <img src='https://www.svgrepo.com/show/459043/drag-handle.svg' width='25px'>
-            <em>Tarefa</em> ${tarefa.nome} | <em>Custo</em> R$${tarefa.custo} | <em>Prazo</em> ${tarefa.dataLimite} }
-            <button class="edit btn btn-primary">✏️</button>
-            <button class="delete btn btn-danger">🗑️</button>
-            <button class="up btn btn-dark" ${index === 0 ? 'disabled' : ''}>&#x25B2;</button>
-            <button class="down btn btn-dark" ${index === tarefas.length - 1 ? 'disabled' : ''}>&#x25BC;</button>
+            <div class="tarefa">
+                <img src='https://www.svgrepo.com/show/459043/drag-handle.svg' width='25px'>
+                <em>Tarefa</em> ${tarefa.nome} | <em>Custo</em> R$${tarefa.custo} | <em>Prazo</em> ${tarefa.dataLimite} 
+                <button class="edit btn btn-primary">✏️</button>
+                <button class="delete btn btn-danger">🗑️</button>
+                <button class="up btn btn-dark" ${index === 0 ? 'disabled' : ''}>&#x25B2;</button>
+                <button class="down btn btn-dark" ${index === tarefas.length - 1 ? 'disabled' : ''}>&#x25BC;</button>
+            </div>
         `;
 
         addDragAndDropListeners(li, tarefas, index);
@@ -96,11 +99,8 @@ async function excluirTarefa(tarefaId) {
         await fetch(`http://localhost:3000/tarefas/${tarefaId}`, {
             method: 'DELETE',
         });
-    } else {
-        return;
     }
-
-    await carregarTarefas(); // Recarregar a lista de tarefas após exclusão
+    await carregarTarefas(); 
 }
 
 function moveTask(tarefas, fromIndex, toIndex) {

@@ -1,18 +1,20 @@
 const express = require('express');
-const Tarefa = require('../models/Tarefa');
+const { Tarefa, incrementarOrdemApresentacao } = require('../models/Tarefa');
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
     try{
-        const tarefa = new Tarefa(req.body);
+        const novaOrdemApresentacao = await incrementarOrdemApresentacao();
+        
+        const tarefa = new Tarefa({
+            ...req.body,
+            ordemApresentacao: novaOrdemApresentacao
+        });
         await tarefa.save();
         res.status(201).json(tarefa);
     }catch(err){
         res.status(400).json({ message: err.message });
-        const tarefa = new Tarefa(req.body);
-        await tarefa.save();
-        console.log("Valor já inseridos.");
     }
 });
 
