@@ -49,10 +49,8 @@ function editarTarefa(tarefa) {
     document.getElementById('editCusto').value = tarefa.custo;
     document.getElementById('editDataLimite').value = tarefa.dataLimite;
 
-    // Armazena o ID da tarefa em um campo oculto
     document.getElementById('tarefaId').value = tarefa._id;
     
-    // Exibe o popup (Bootstrap modal)
     $('#editPopup').modal('show');
 }
 
@@ -64,7 +62,6 @@ document.getElementById('saveEdit').addEventListener('click', async () => {
         dataLimite: document.getElementById('editDataLimite').value,
     };
 
-    // Verifica se o novo nome já existe, excluindo a tarefa atual
     const response = await fetch(`https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas?nome=${novaTarefa.nome}`);
     const tarefasExistentes = await response.json();
     const tarefaAtual = tarefasExistentes.find(t => t._id === tarefaId);
@@ -74,7 +71,6 @@ document.getElementById('saveEdit').addEventListener('click', async () => {
         return;
     }
 
-    // Atualiza a tarefa
     await fetch(`https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas/${tarefaId}`, {
         method: 'PUT',
         headers: {
@@ -83,10 +79,8 @@ document.getElementById('saveEdit').addEventListener('click', async () => {
         body: JSON.stringify(novaTarefa),
     });
 
-    // Fecha o popup
     $('#editPopup').modal('hide');
 
-    // Recarrega a lista de tarefas
     await carregarTarefas();
 });
 document.getElementById('cancelEdit').addEventListener('click', async () => {
@@ -149,7 +143,6 @@ document.getElementById('form-tarefa').addEventListener('submit', async (e) => {
     };
 
     if (tarefaId) {
-        // Atualizar tarefa existente
         await fetch(`https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas/${tarefaId}`, {
             method: 'PUT',
             headers: {
@@ -158,7 +151,6 @@ document.getElementById('form-tarefa').addEventListener('submit', async (e) => {
             body: JSON.stringify(novaTarefa),
         });
     } else {
-        // Criar nova tarefa
         await fetch('https://mongodb-lista-de-tarefas-production.up.railway.app/tarefas', {
             method: 'POST',
             headers: {
@@ -190,8 +182,8 @@ function intro() {
 
 function dataAtual() {
     const dataCompleta = new Date();
-    const dia = String(dataCompleta.getDate()).padStart(2, '0'); // Adiciona zero à esquerda se necessário
-    const mes = String(dataCompleta.getMonth() + 1).padStart(2, '0'); // Meses começam do zero
+    const dia = String(dataCompleta.getDate()).padStart(2, '0'); 
+    const mes = String(dataCompleta.getMonth() + 1).padStart(2, '0'); 
     const ano = dataCompleta.getFullYear();
 
     const dataFormatada = `${dia}/${mes}/${ano}`;

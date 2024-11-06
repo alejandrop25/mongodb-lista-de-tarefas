@@ -13,14 +13,12 @@ connectDB();
 
 app.use(express.json());
 
-// Serve arquivos estáticos da pasta 'frontend'
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Rota para a raiz (opcional)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
 });
-//define as rotas
+
 app.use('/tarefas', tarefaRoutes);
 app.put('/tarefas/:id', async (req, res) => {
     const { id } = req.params;

@@ -9,9 +9,9 @@ const ordemApresentacao = mongoose.model('ordemApresentacao', schemaOrdemApresen
 
 async function incrementarOrdemApresentacao() {
     const novaOrdem = await ordemApresentacao.findOneAndUpdate(
-        {},  // Busca o único documento que temos
+        {},  
         { $inc: { seq: 1 } },
-        { new: true, upsert: true } // Cria o documento se não existir
+        { new: true, upsert: true } // cria o documento se não existir
     );
     return novaOrdem.seq;
 }
